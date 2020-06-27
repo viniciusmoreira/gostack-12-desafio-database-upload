@@ -36,7 +36,7 @@ class ImportTransactionsService {
       if (categories.indexOf(category) === -1) categories.push(category);
       transactions.push({
         title,
-        type: type.localeCompare('outcome') ? 'income' : 'outcome',
+        type: type as 'income' | 'outcome',
         value: Number(value),
         category,
       });
