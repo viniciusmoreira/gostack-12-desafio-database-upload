@@ -46,7 +46,6 @@ class ImportTransactionsService {
       where: {
         title: In(categories),
       },
-      select: ['title'],
     }); // .map(category => category.title);
 
     const addCategories = categories.filter(
@@ -62,7 +61,9 @@ class ImportTransactionsService {
       })),
     );
 
-    await categoriesRepository.save(newCategories);
+    if (newCategories.length) {
+      await categoriesRepository.save(newCategories);
+    }
 
     const finalCategories: Category[] = [
       ...newCategories,
